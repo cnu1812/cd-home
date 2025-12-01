@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Background */
+body {
+  background-color: #050b14; /* Deep Cyber Black */
+  color: white;
+  overflow-x: hidden;
+}
+
+/* --- Your Custom Theme CSS --- */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(0, 188, 212, 0.4), 0 0 24px rgba(0, 188, 212, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(0, 188, 212, 0.6), 0 0 30px rgba(0, 188, 212, 0.3);
+  }
+}
+
+@keyframes breath {
+  0%, 100% {
+    box-shadow: 0 0 12px rgba(0, 188, 212, 0.4), 0 0 24px rgba(0, 188, 212, 0.2);
+    border-color: rgba(0, 188, 212, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(0, 188, 212, 0.6), 0 0 32px rgba(0, 188, 212, 0.3);
+    border-color: rgba(0, 188, 212, 1);
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -100% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@layer utilities {
+  .animate-shimmer {
+    background-size: 200% 100%;
+    animation: shimmer 2s linear infinite;
+  }
+  
+  .animate-breath {
+    animation: breath 3s ease-in-out infinite;
+  }
+}
+
+.neon-glow {
+  color: #aefeff;
+  text-shadow: 0 0 2px #aefeff, 0 0 4px #7de9f2, 0 0 6px #5ed3e0;
+  transition: text-shadow 0.3s ease, transform 0.3s ease;
+  animation: subtlePulse 3s ease-in-out infinite alternate;
+}
+
+.neon-glow:hover {
+  text-shadow: 0 0 3px #aefeff, 0 0 6px #7de9f2, 0 0 10px #5ed3e0;
+  transform: scale(1.01);
+}
+
+@keyframes subtlePulse {
+  0% { text-shadow: 0 0 2px #aefeff, 0 0 4px #7de9f2, 0 0 6px #5ed3e0; }
+  100% { text-shadow: 0 0 3px #aefeff, 0 0 6px #7de9f2, 0 0 10px #5ed3e0; }
+}
+
+/* Background Grid Effect */
+.cyber-grid {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, rgba(0, 188, 212, 0.05) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0, 188, 212, 0.05) 1px, transparent 1px);
+  mask-image: linear-gradient(to bottom, black 40%, transparent 100%);
+}
