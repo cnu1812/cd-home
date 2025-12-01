@@ -12,8 +12,16 @@ import Footer from './components/Footer';
 import ChatBotInvite from './components/ChatBotInvite';
 import ComparisonSection from './components/ComparisonSection';
 import PriceSimulator from './components/PriceSimulator';
+import CyberTerminal from './components/CyberTerminal';
+import SecurityHUD from './components/SecurityHUD';
+
+
 
 function App() {
+
+  const [godMode, setGodMode] = useState(false);
+
+
   // Scroll Progress Logic
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -35,6 +43,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-dark-bg text-white font-sans selection:bg-cyan-500/30 relative">
+   
       
       {/* 1. Scroll Progress Bar */}
       <motion.div
@@ -72,8 +81,10 @@ function App() {
       </main>
 
       <Footer />
+      <CyberTerminal />
 
       <ChatBotInvite />
+      <SecurityHUD/>
     </div>
   );
 }
