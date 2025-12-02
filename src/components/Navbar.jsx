@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Shield, ExternalLink } from 'lucide-react';
+import { Menu, X, ExternalLink } from 'lucide-react';
+import NavbarLogo from './NavbarLogo'; 
+import useHackerEffect from '../hooks/useHackerEffect';
 
 const Navbar = () => {
+  const { text: brandText, trigger: triggerBrand } = useHackerEffect("CYBERDEFEND");
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -16,6 +19,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Academy', href: 'https://academy.cyberdefend.in' },
     { name: 'Services', href: 'https://services.cyberdefend.in' },
+    { name: 'Careers', href: '/careers' },
     { name: 'About', href: '#about' },
   ];
 
@@ -30,13 +34,18 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
         
         {/* Logo Area */}
-        <div className="flex items-center gap-2 cursor-pointer group">
+        <div className="flex items-center gap-3 cursor-pointer group" onMouseEnter={triggerBrand}>
           <div className="relative">
-            <Shield className="w-8 h-8 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
-            <div className="absolute inset-0 bg-cyan-400 blur-lg opacity-20 group-hover:opacity-40 transition-opacity" />
+            {/* The Animated Logo Component */}
+            <NavbarLogo className="w-12 h-12 relative z-10" />
+            
+            {/* Glow effect behind the logo */}
+            <div className="absolute inset-0 bg-cyan-400 blur-xl opacity-20 group-hover:opacity-40 transition-opacity rounded-full" />
           </div>
+          
           <span className="text-xl font-bold tracking-wider text-white">
             CYBER<span className="text-cyan-400">DEFEND</span>
+            {/* {brandText} */}
           </span>
         </div>
 
@@ -54,7 +63,7 @@ const Navbar = () => {
           ))}
           
           <a
-            href="mailto:contact@cyberdefend.in"
+            href="mailto:support@cyberdefend.in"
             className="px-5 py-2 text-sm font-bold text-dark-bg bg-cyan-400 rounded hover:bg-cyan-300 transition-all shadow-[0_0_15px_rgba(34,211,238,0.3)] hover:shadow-[0_0_25px_rgba(34,211,238,0.5)]"
           >
             Contact HQ
@@ -91,7 +100,7 @@ const Navbar = () => {
                 </a>
               ))}
               <a
-                href="mailto:contact@cyberdefend.in"
+                href="mailto:support@cyberdefend.in"
                 className="mt-2 text-center w-full py-3 bg-cyan-500/20 text-cyan-400 font-bold border border-cyan-500/50 rounded"
               >
                 Contact HQ

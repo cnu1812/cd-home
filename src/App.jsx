@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 
 // Components
 import Navbar from './components/Navbar';
@@ -14,10 +14,15 @@ import ComparisonSection from './components/ComparisonSection';
 import PriceSimulator from './components/PriceSimulator';
 import CyberTerminal from './components/CyberTerminal';
 import SecurityHUD from './components/SecurityHUD';
-
-
+import SmoothScroll from './components/SmoothScroll'; // <--- Physics Scroll
+import CyberScrollbar from './components/CyberScrollbar';
+import SplashScreen from './components/SplashScreen';
+import NeuralBackground from './components/NeuralBackground';
+import CyberCursor from './components/CyberCursor';
+import CareerSection from './components/CareerSection';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
 
   const [godMode, setGodMode] = useState(false);
 
@@ -43,7 +48,17 @@ function App() {
 
   return (
     <div className="min-h-screen bg-dark-bg text-white font-sans selection:bg-cyan-500/30 relative">
-   
+   {/* --- PHASE 1: SPLASH SCREEN --- */}
+   <AnimatePresence mode="wait">
+        {isLoading && (
+          <SplashScreen onComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
+      <CyberCursor />
+   <SmoothScroll />
+   <CyberScrollbar />
+
+   <NeuralBackground />
       
       {/* 1. Scroll Progress Bar */}
       <motion.div
@@ -61,6 +76,9 @@ function App() {
 
       {/* 3. The New Navbar */}
       <Navbar />
+      <main className="relative z-10">
+       
+      </main>
 
       <main>
         <Hero />
@@ -78,6 +96,7 @@ function App() {
         <FeaturesGrid />
         <ComparisonSection />
         <PriceSimulator />
+        <CareerSection />
       </main>
 
       <Footer />
