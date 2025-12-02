@@ -20,6 +20,7 @@ import SplashScreen from './components/SplashScreen';
 import NeuralBackground from './components/NeuralBackground';
 import CyberCursor from './components/CyberCursor';
 import CareerSection from './components/CareerSection';
+import FAQSection from './components/FAQSection';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -98,7 +99,7 @@ function App() {
         <PriceSimulator />
         <CareerSection />
       </main>
-
+      <FAQSection/>
       <Footer />
       <CyberTerminal />
 
