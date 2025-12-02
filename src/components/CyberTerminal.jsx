@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Terminal, Minus, Square, ShieldAlert } from 'lucide-react';
+import { X, Terminal, Minus, Square, ShieldAlert, Command } from 'lucide-react'; // Added Command icon
 import { motion, AnimatePresence } from 'framer-motion';
 
 const CyberTerminal = () => {
@@ -13,6 +13,20 @@ const CyberTerminal = () => {
 
   const inputRef = useRef(null);
   const bottomRef = useRef(null);
+
+  // --- KEYBOARD SHORTCUT LISTENER (Ctrl+K) ---
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      // Check for Ctrl+K or Cmd+K
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault(); // Prevent browser default (often search bar)
+        setIsOpen((prev) => !prev);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // --- BOOT SEQUENCE ---
   const runBootSequence = () => {
@@ -136,6 +150,10 @@ const CyberTerminal = () => {
           newHistory.push({ type: 'success', content: 'Opening Academy...' });
           setTimeout(() => window.open('https://academy.cyberdefend.in', '_blank'), 1000);
           break;
+          case 'contact':
+            newHistory.push({ type: 'success', content: 'Opening Contact page...' });
+            setTimeout(() => window.open('https://services.cyberdefend.in/contact', '_blank'), 1000);
+            break;
         case 'clear':
           setHistory([]);
           setInput('');
@@ -156,14 +174,14 @@ const CyberTerminal = () => {
     <>
       {/* TRIGGER BUTTON - Fixed Top Right (Below Navbar) */}
       <button
-        onClick={() => setIsOpen(true)}
+        onClick={() => setIsOpen(!isOpen)}
         className="fixed top-24 right-6 z-40 w-12 h-12 flex items-center justify-center bg-slate-900/90 backdrop-blur border border-cyan-500/30 rounded-full text-cyan-400 hover:bg-cyan-900/20 hover:border-cyan-400 hover:shadow-[0_0_20px_rgba(34,211,238,0.5)] transition-all group"
-        title="Open Terminal"
+        title="Open Terminal (Ctrl+K)"
       >
         <Terminal size={20} />
-        {/* Tooltip now appears BELOW the button */}
-        <span className="absolute top-14 left-1/2 -translate-x-1/2 bg-slate-800 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-slate-700 text-cyan-400">
-          Terminal
+        {/* Tooltip now includes shortcut hint */}
+        <span className="absolute top-14 left-1/2 -translate-x-1/2 bg-slate-800 text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap border border-slate-700 text-cyan-400 flex items-center gap-1">
+          Terminal <span className="bg-slate-700 px-1 rounded text-[10px] text-white">⌘K</span>
         </span>
       </button>
 
