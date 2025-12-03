@@ -14,13 +14,14 @@ import ComparisonSection from './components/ComparisonSection';
 import PriceSimulator from './components/PriceSimulator';
 import CyberTerminal from './components/CyberTerminal';
 import SecurityHUD from './components/SecurityHUD';
-import SmoothScroll from './components/SmoothScroll'; // <--- Physics Scroll
+import SmoothScroll from './components/SmoothScroll'; 
 import CyberScrollbar from './components/CyberScrollbar';
 import SplashScreen from './components/SplashScreen';
 import NeuralBackground from './components/NeuralBackground';
 import CyberCursor from './components/CyberCursor';
 import CareerSection from './components/CareerSection';
 import FAQSection from './components/FAQSection';
+import SEO from './components/SEO';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -48,6 +49,13 @@ function App() {
   }, []);
 
   return (
+    <BrowserRouter>
+      <SEO 
+        title="CyberDefend | Premier Cybersecurity Services & Academy"
+        description="The ultimate hub for offensive security services and elite cybersecurity training. Secure your startup or launch your red team career with CyberDefend."
+        keywords="CyberDefend, Cyber Defend, Cybersecurity Agency, VAPT Services, Ethical Hacking Course, Cyber Security Training India"
+        url="https://cyberdefend.in"
+      />
     <div className="min-h-screen bg-dark-bg text-white font-sans selection:bg-cyan-500/30 relative">
    {/* --- PHASE 1: SPLASH SCREEN --- */}
    <AnimatePresence mode="wait">
@@ -106,6 +114,7 @@ function App() {
       <ChatBotInvite />
       <SecurityHUD/>
     </div>
+    </BrowserRouter>
   );
 }
 
