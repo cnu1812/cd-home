@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
-
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // Components
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
